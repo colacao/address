@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>城市选择1</title>
+  <META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+  <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache"> 
+  <META HTTP-EQUIV="Expires" CONTENT="0"> 
+ <meta content="telephone=no" name="format-detection" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">	
+	<link rel="stylesheet" type="text/css" href="address.css">
+	<script type="text/javascript" src="common.js"></script>
+	 <script type="text/javascript" src="iscroll-lite.js"></script>
+	 <script type="text/javascript" src="list.js"></script>
+	<script type="text/javascript" src="address.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			new Address({
+        onChangeCity:function(key){
+          console.log(key);
+        },
+				onCreate:function(){
+
+					this.List = new List({
+            floatContainer: document.querySelector(".float-header"),
+            Scroll: (function() {
+              var listeners = [];
+              var top;
+              var scroll = new iScroll("cityPage", {
+                onScrollMove: function(e) {
+                  top = -this.y;
+                 
+                  listeners.forEach(function(fn) {
+                    fn.call(window);
+                  });
+                },
+                onScrollEnd: function() {
+                  if (document.querySelector(".float-header")) {
+                    document.querySelector(".float-header").style.opacity = 1;
+                  }
+                }
+              });
+              return {
+                onscroll: function(fn) {
+                  listeners.push(fn);
+                },
+                getScrollTop: function() {
+                  return top;
+                },
+                getOffsetTop: function(target) {
+                  return target.offsetTop;
+                }
+              }
+            })(),
+            targets: document.querySelectorAll(".city-wrapper h3")
+          })	
+
+
+				}
+
+			})
+		}
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
