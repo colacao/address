@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><%= title %></title>
+	<meta content="telephone=no" name="format-detection" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<script>
+	window.onload = function(){
+		if(!localStorage.getItem('hehe')){
+			localStorage.setItem('hehe',new Date().toLocaleString());
+
+		}
+	document.getElementById("loc").innerHTML = (localStorage.getItem('hehe'))
+	}
+	</script>
+</head>
+<body>
+<%= city.country%>
+<%= city.province%>
+<%= city.city%>
+<%= city.organization%>
+	<div id="loc"></div>
+</body>
+</html>
