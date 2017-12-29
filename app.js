@@ -21,10 +21,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.get('/', function(req, res) {
-	var ipip = require('ipip').IPIP;
-	var ip = new ipip();
+	// var ipip = require('ipip').IPIP;
+	// var ip = new ipip();
 	var strip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress;
-	res.render('index', {city:ip.ip("58.208.66.241"||strip.match(/\d+/g).join('.')),title:new Date().toLocaleString()});
+	res.render('index', {city:strip.match(/\d+/g).join('.'),title:new Date().toLocaleString()});
 });
 
 
